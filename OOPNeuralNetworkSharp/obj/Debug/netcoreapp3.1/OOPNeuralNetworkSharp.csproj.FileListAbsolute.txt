@@ -1,0 +1,13 @@
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\bin\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.exe
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\bin\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.deps.json
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\bin\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.runtimeconfig.json
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\bin\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.runtimeconfig.dev.json
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\bin\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.dll
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\bin\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.pdb
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\obj\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.csprojAssemblyReference.cache
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\obj\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.AssemblyInfoInputs.cache
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\obj\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.AssemblyInfo.cs
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\obj\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.csproj.CoreCompileInputs.cache
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\obj\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.dll
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\obj\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.pdb
+C:\Users\sondre\source\repos\OOPNeuralNetworkSharp\OOPNeuralNetworkSharp\obj\Debug\netcoreapp3.1\OOPNeuralNetworkSharp.genruntimeconfig.cache

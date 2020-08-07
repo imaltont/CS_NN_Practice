@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30320.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPNeuralNetworkSharp", "OOPNeuralNetworkSharp\OOPNeuralNetworkSharp.csproj", "{965E5B6E-1998-491E-BD35-441CA03A27E3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{965E5B6E-1998-491E-BD35-441CA03A27E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{965E5B6E-1998-491E-BD35-441CA03A27E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{965E5B6E-1998-491E-BD35-441CA03A27E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{965E5B6E-1998-491E-BD35-441CA03A27E3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F76EECF5-6FDB-4A28-BC0A-01844B9CA0D3}
+	EndGlobalSection
+EndGlobal
