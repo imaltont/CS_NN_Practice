@@ -2,9 +2,17 @@ using System;
 
 namespace OOPNeuralNetworkSharp
 {
-    class Neuron
+    public delegate double ActivationFunction(double accumulatedSum);
+    public delegate double ActivationFunctionDerivative(double accumulatedSum);
+    struct LayerParams
     {
-        public delegate double ActivationFunction(double accumulatedSum);
+        public ActivationFunction F { get; set; }
+        public ActivationFunctionDerivative G { get; set; }
+        public int NumNeurons { get; set; }
+
+    }
+    public class Neuron
+    {
         double[] weights;
         ActivationFunction activationFunction;
         double last_value;

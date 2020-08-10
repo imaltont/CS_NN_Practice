@@ -2,7 +2,7 @@ using System;
 
 namespace OOPNeuralNetworkSharp
 {
-    class Layer
+    public class Layer
     {
         Neuron[] neurons;
         public Layer()
@@ -23,4 +23,3 @@ namespace OOPNeuralNetworkSharp
         }
     }
 }
-
