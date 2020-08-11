@@ -2,6 +2,13 @@ using System;
 
 namespace OOPNeuralNetworkSharp
 {
+    struct LayerParams
+    {
+        public ActivationFunction F { get; set; }
+        public ActivationFunctionDerivative G { get; set; }
+        public int NumNeurons { get; set; }
+
+    }
     public class Layer
     {
         Neuron[] neurons;
