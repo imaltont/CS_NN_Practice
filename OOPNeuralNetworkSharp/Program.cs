@@ -6,19 +6,16 @@ namespace OOPNeuralNetworkSharp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.ReadLine();
             ActivationFunction testingFunc = (x) => x;
             ActivationFunctionDerivative testingFuncDerivative = (x) => x;
-            var network = new Network(5);
-            network.AddLayer(testingFunc, testingFuncDerivative, 5);
+            var network = new Network(2);
+            network.AddLayer(testingFunc, testingFuncDerivative, 2);
             network.BuildNetwork();
-            double[] inp =  new double[]{1.0, 1.0, 1.0, 1.0, 1.0};
-            double[] output = network.Inference(inp);
-            foreach (var item in output)
-            {
-                Console.WriteLine($"{item}");
-            }
+            DataStruct[] trainingSet = new DataStruct[1];
+            trainingSet[0] = new DataStruct(new double[] {1.0, 1.0}, new double[] {1.0,0.0});
+            network.Train(trainingSet, 0.1, 10);
+//            double[] output = network.Inference(inp);
+            
         }
     }
 }

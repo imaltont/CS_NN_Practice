@@ -56,13 +56,13 @@ namespace OOPNeuralNetworkSharp
         {
             for (int i = 0; i < epochs; i++)
             {
-                this.Test(dataset);
+                //this.Test(dataset);
                 foreach (var example in dataset)
                 {
                     double[] result = this.Inference(example.Input);
                     double[] delta = this.Compare(result, example.Output);
                     double[] error = new double[delta.Length];
-                    for (int j = 0; j < delta.Length; i++)
+                    for (int j = 0; j < delta.Length; j++)
                     {
                         error[j] = Math.Pow(delta[j], 2);
                     }
