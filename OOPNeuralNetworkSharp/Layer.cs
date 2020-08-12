@@ -8,12 +8,24 @@ namespace OOPNeuralNetworkSharp
         public ActivationFunctionDerivative G { get; set; }
         public int NumNeurons { get; set; }
 
+        public LayerParams(ActivationFunction f, ActivationFunctionDerivative g, int n)
+        {
+            this.F = f;
+            this.G = g;
+            this.NumNeurons = n;
+        }
+
     }
     public class Layer
     {
         Neuron[] neurons;
-        public Layer()
+        public Layer(int numberOfInputs, int numberOfNeurons, ActivationFunction f, ActivationFunctionDerivative g)
         {
+            this.neurons = new Neuron[numberOfNeurons];
+            for (int i = 0; i < numberOfNeurons; i++)
+            {
+                this.neurons[i] = new Neuron(numberOfInputs, f, g);
+            }
         }
         public double[] Inference(double[] input)
         {
