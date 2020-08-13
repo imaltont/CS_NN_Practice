@@ -56,19 +56,24 @@ namespace OOPNeuralNetworkSharp
         {
             for (int i = 0; i < epochs; i++)
             {
+                double accumulatedError = 0;
                 //this.Test(dataset);
                 foreach (var example in dataset)
                 {
                     double[] result = this.Inference(example.Input);
                     double[] delta = this.Compare(result, example.Output);
+
+                    this.Backpropagation(result, delta);
+                    //error is just for printing results for now.
                     double[] error = new double[delta.Length];
                     for (int j = 0; j < delta.Length; j++)
                     {
                         error[j] = Math.Pow(delta[j], 2);
                     }
-                    Console.WriteLine($"Error: {error.Sum()/error.Length}");
+                    accumulatedError +=  error.Sum() / error.Length;
                     //TODO: Update weights/backpropagation.
                 }
+                Console.WriteLine($"Average error rate: {accumulatedError / dataset.Length}");
             }
         }
 
@@ -77,13 +82,21 @@ namespace OOPNeuralNetworkSharp
             double[] local_result = new double[result.Length];
             for (int i = 0; i < result.Length; i++)
             {
-                local_result[i] = result[i]-output[i];
+                local_result[i] = output[i] - result[i];
             }
             return local_result;
         }
 
         public void Test(DataStruct[] dataset)
         {
+        }
+        private void Backpropagation(double[] results, double[] delta)
+        {
+            //TODO: put this into Compare as well in some way, to avoid the extra for loop
+            for (int i = 0; i < delta.Length; i++)
+            {
+                delta[i] *= this.Layers[this.Layers.Length-1].getNeurons()[i].activationFunctionDerivative(results[i]);
+            }
         }
         public void UpdateWeights(double learningRate, double[] error)
         {

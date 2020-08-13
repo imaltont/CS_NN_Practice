@@ -7,7 +7,7 @@ namespace OOPNeuralNetworkSharp
         static void Main(string[] args)
         {
             ActivationFunction testingFunc = (x) => x;
-            ActivationFunctionDerivative testingFuncDerivative = (x) => x;
+            ActivationFunctionDerivative testingFuncDerivative = (x) => 1;
             var network = new Network(2);
             network.AddLayer(testingFunc, testingFuncDerivative, 2);
             network.BuildNetwork();
