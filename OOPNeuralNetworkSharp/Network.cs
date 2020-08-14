@@ -75,7 +75,7 @@ namespace OOPNeuralNetworkSharp
             double[] local_result = new double[result.Length];
             for (int i = 0; i < result.Length; i++)
             {
-                local_result[i] = output[i] - result[i];
+                local_result[i] = Math.Pow(output[i] - result[i], 2);
             }
             return local_result;
         }
@@ -98,12 +98,12 @@ namespace OOPNeuralNetworkSharp
                     double localDelta = prevDelta[j] * this.Layers[i].getNeurons()[j].activationFunctionDerivative(this.Layers[i].getNeurons()[j].lastValue);
                     for (int w = 0; w < this.Layers[i].getNeurons()[0].weights.Length; w++)
                     {
-                        this.Layers[i].getNeurons()[j].weights[w] -= learningrate * this.Layers[i].getNeurons()[j].lastValue * localDelta;
                         currentDelta[w] += localDelta * this.Layers[i].getNeurons()[j].weights[w];
+                        this.Layers[i].getNeurons()[j].weights[w] -= learningrate * this.Layers[i].getNeurons()[j].lastValue * localDelta;
                     }
                     
                 }
-                prevDelta = currentDelta;
+                prevDelta = currentDelta.ToList();
             }
         }
         public void UpdateWeights(double learningRate, double[] error)

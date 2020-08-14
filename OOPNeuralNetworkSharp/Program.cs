@@ -1,4 +1,5 @@
-﻿using System;
+﻿//TODO: Fix weight update so it learns more than output 50/50 every time
+using System;
 
 namespace OOPNeuralNetworkSharp
 {
@@ -9,16 +10,15 @@ namespace OOPNeuralNetworkSharp
             ActivationFunction testingFunc = (x) => 1 / (1 + Math.Exp(-x));
             ActivationFunctionDerivative testingFuncDerivative = (x) => testingFunc(x) * (1 - testingFunc(x));
             var network = new Network(2);
-            network.AddLayer(testingFunc, testingFuncDerivative, 5);
-            network.AddLayer(testingFunc, testingFuncDerivative, 5);
-            network.AddLayer(testingFunc, testingFuncDerivative, 1);
+            network.AddLayer(testingFunc, testingFuncDerivative, 10);
+            network.AddLayer(testingFunc, testingFuncDerivative, 2);
             network.BuildNetwork();
             DataStruct[] trainingSet = new DataStruct[4];
-            trainingSet[0] = new DataStruct(new double[] {1.0, 1.0}, new double[] {1.0});
-            trainingSet[1] = new DataStruct(new double[] {0.0, 1.0}, new double[] {0.0});
-            trainingSet[2] = new DataStruct(new double[] {1.0, 0.0}, new double[] {0.0});
-            trainingSet[3] = new DataStruct(new double[] {0.0, 0.0}, new double[] {0.0});
-            network.Train(trainingSet, 0.01, 100);
+            trainingSet[0] = new DataStruct(new double[] {1.0, 1.0}, new double[] {1.0, 0.0});
+            trainingSet[1] = new DataStruct(new double[] {0.0, 1.0}, new double[] {0.0, 1.0});
+            trainingSet[2] = new DataStruct(new double[] {1.0, 0.0}, new double[] {0.0, 1.0});
+            trainingSet[3] = new DataStruct(new double[] {0.0, 0.0}, new double[] {0.0, 1.0});
+            network.Train(trainingSet, 0.3, 100000);
 
             Console.WriteLine("1 and 1");
             var res = network.Inference(trainingSet[0].Input);
