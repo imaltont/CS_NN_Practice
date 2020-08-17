@@ -7,23 +7,33 @@ namespace OOPNeuralNetworkSharp
     {
         static void Main(string[] args)
         {
-            ActivationFunction testingFunc = (x) => 1 / (1 + Math.Exp(-x));
-            ActivationFunctionDerivative testingFuncDerivative = (x) => x * (1 - x);
-//            ActivationFunction testingFunc = (x) => (Math.Exp(2*x) - 1) / (Math.Exp(2 * x) + 1);
-//            ActivationFunctionDerivative testingFuncDerivative = (x) => 1 - Math.Pow(x, 2);
+            //Activation functions
+
+            ActivationFunction sigmoidFunc = (x) => 1 / (1 + Math.Exp(-x));
+            ActivationFunctionDerivative sigmoidFuncDerivative = (x) => x * (1 - x);
+
+            ActivationFunction reluFunc = (x) => Math.Max(0, x);
+            ActivationFunctionDerivative reluFuncDerivative = (x) => {if (x < 0) return 0; else return 1;};
+
+            double eluParam = 0.000001;
+            ActivationFunction eluFunc = (x) => {if (x > 0 ) return x; else return eluParam * (Math.Exp(x) - 1);};
+            ActivationFunctionDerivative eluFuncDerivative = (x) => {if (x < 0) return x*eluParam*Math.Exp(x-1); else return 1;};
+
+
             var network = new Network(2);
-            network.AddLayer(testingFunc, testingFuncDerivative, 10);
-            network.AddLayer(testingFunc, testingFuncDerivative, 10);
-            network.AddLayer(testingFunc, testingFuncDerivative, 10);
-            network.AddLayer(testingFunc, testingFuncDerivative, 10);
-            network.AddLayer(testingFunc, testingFuncDerivative, 2);
+            network.AddLayer(sigmoidFunc, sigmoidFuncDerivative, 10);
+            network.AddLayer(eluFunc, eluFuncDerivative, 100);
+            network.AddLayer(sigmoidFunc, sigmoidFuncDerivative, 10);
+            network.AddLayer(eluFunc, eluFuncDerivative, 100);
+            network.AddLayer(sigmoidFunc, sigmoidFuncDerivative, 10);
+            network.AddLayer(sigmoidFunc, sigmoidFuncDerivative, 1);
             network.BuildNetwork();
             DataStruct[] trainingSet = new DataStruct[4];
-            trainingSet[0] = new DataStruct(new double[] {1.0, 1.0}, new double[] {0.0, 1.0});
-            trainingSet[1] = new DataStruct(new double[] {-1.0, 1.0}, new double[] {1.0, 0.0});
-            trainingSet[2] = new DataStruct(new double[] {1.0, -1.0}, new double[] {1.0, 0.0});
-            trainingSet[3] = new DataStruct(new double[] {-1.0, -1.0}, new double[] {0.0, 1.0});
-            network.Train(trainingSet, 0.1, 100000);
+            trainingSet[0] = new DataStruct(new double[] {1.0, 1.0}, new double[] {0.0});
+            trainingSet[1] = new DataStruct(new double[] {-1.0, 1.0}, new double[] {1.0});
+            trainingSet[2] = new DataStruct(new double[] {1.0, -1.0}, new double[] {1.0});
+            trainingSet[3] = new DataStruct(new double[] {-1.0, -1.0}, new double[] {0.0});
+            network.Train(trainingSet, 0.5, 100000, 10000);
 
             Console.WriteLine("1 and 1");
             var res = network.Inference(trainingSet[0].Input);
