@@ -23,7 +23,7 @@ namespace OOPNeuralNetworkSharp
             trainingSet[1] = new DataStruct(new double[] {-1.0, 1.0}, new double[] {1.0, 0.0});
             trainingSet[2] = new DataStruct(new double[] {1.0, -1.0}, new double[] {1.0, 0.0});
             trainingSet[3] = new DataStruct(new double[] {-1.0, -1.0}, new double[] {0.0, 1.0});
-            network.Train(trainingSet, 0.1, 10000);
+            network.Train(trainingSet, 0.1, 100000);
 
             Console.WriteLine("1 and 1");
             var res = network.Inference(trainingSet[0].Input);
