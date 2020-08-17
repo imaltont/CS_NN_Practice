@@ -19,10 +19,10 @@ namespace OOPNeuralNetworkSharp
             network.AddLayer(testingFunc, testingFuncDerivative, 2);
             network.BuildNetwork();
             DataStruct[] trainingSet = new DataStruct[4];
-            trainingSet[0] = new DataStruct(new double[] {10.0, 10.0}, new double[] {0.0, 1.0});
-            trainingSet[1] = new DataStruct(new double[] {-10.0, 10.0}, new double[] {1.0, 0.0});
-            trainingSet[2] = new DataStruct(new double[] {10.0, -10.0}, new double[] {1.0, 0.0});
-            trainingSet[3] = new DataStruct(new double[] {-10.0, -10.0}, new double[] {0.0, 1.0});
+            trainingSet[0] = new DataStruct(new double[] {1.0, 1.0}, new double[] {0.0, 1.0});
+            trainingSet[1] = new DataStruct(new double[] {-1.0, 1.0}, new double[] {1.0, 0.0});
+            trainingSet[2] = new DataStruct(new double[] {1.0, -1.0}, new double[] {1.0, 0.0});
+            trainingSet[3] = new DataStruct(new double[] {-1.0, -1.0}, new double[] {0.0, 1.0});
             network.Train(trainingSet, 0.1, 10000);
 
             Console.WriteLine("1 and 1");
