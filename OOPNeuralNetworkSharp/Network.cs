@@ -1,3 +1,4 @@
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,11 +44,11 @@ namespace OOPNeuralNetworkSharp
             {
                 if (i == 0)
                 {
-                    this.Layers[i] = new Layer(this.NumberOfInputs, LayerList[i].NumNeurons, LayerList[i].F, LayerList[i].G);
+                    this.Layers[i] = new Layer(this.NumberOfInputs, LayerList[i].NumNeurons, LayerList[i].F, LayerList[i].G, false);
                 }
                 else
                 {
-                    this.Layers[i] = new Layer(LayerList[i - 1].NumNeurons, LayerList[i].NumNeurons, LayerList[i].F, LayerList[i].G);
+                    this.Layers[i] = new Layer(LayerList[i - 1].NumNeurons, LayerList[i].NumNeurons, LayerList[i].F, LayerList[i].G, false);
                 }
             }
         }
@@ -61,21 +62,21 @@ namespace OOPNeuralNetworkSharp
                 foreach (var example in dataset)
                 {
                     double[] result = this.Inference(example.Input);
-                    double[] delta = this.Compare(result, example.Output);
+                    double[] delta = this.Compare(example.Output, result);
 
-                    this.Backpropagation(result, delta, learningRate);
+                    this.Backpropagation(result, delta, learningRate, example.Input);
                     accumulatedError +=  delta.Sum() / delta.Length;
                 }
                 Console.WriteLine($"Average error rate: {accumulatedError / dataset.Length}");
             }
         }
 
-        private double[] Compare(double[] result, double[] output)
+        private double[] Compare(double[] expected, double[] output)
         {
-            double[] local_result = new double[result.Length];
-            for (int i = 0; i < result.Length; i++)
+            double[] local_result = new double[expected.Length];
+            for (int i = 0; i < expected.Length; i++)
             {
-                local_result[i] = Math.Pow(output[i] - result[i], 2);
+                local_result[i] = output[i] - expected[i];
             }
             return local_result;
         }
@@ -83,7 +84,7 @@ namespace OOPNeuralNetworkSharp
         public void Test(DataStruct[] dataset)
         {
         }
-        private void Backpropagation(double[] results, double[] delta, double learningrate)
+        private void Backpropagation(double[] results, double[] delta, double learningrate, double[] inputs)
         {
             List<double> prevDelta= delta.ToList();
             for (int i = this.Layers.Length-1; i >= 0; i--)
@@ -96,14 +97,32 @@ namespace OOPNeuralNetworkSharp
                 for (int j = 0; j < this.Layers[i].getNeurons().Length; j++)
                 {
                     double localDelta = prevDelta[j] * this.Layers[i].getNeurons()[j].activationFunctionDerivative(this.Layers[i].getNeurons()[j].lastValue);
-                    for (int w = 0; w < this.Layers[i].getNeurons()[0].weights.Length; w++)
+                    for (int w = 0; w < this.Layers[i].getNeurons()[j].weights.Length; w++)
                     {
                         currentDelta[w] += localDelta * this.Layers[i].getNeurons()[j].weights[w];
-                        this.Layers[i].getNeurons()[j].weights[w] -= learningrate * this.Layers[i].getNeurons()[j].lastValue * localDelta;
+                        if (i > 0)
+                        {
+                            this.Layers[i].getNeurons()[j].weights[w] -= learningrate * this.Layers[i-1].getNeurons()[w].lastValue * localDelta;
+                        }
+                        else
+                        {
+                            this.Layers[i].getNeurons()[j].weights[w] -= learningrate * inputs[w] * localDelta;
+                        }
                     }
+//                    for (int w = 0; w < this.Layers[i].getNeurons()[j].weights.Length; w++)
+//                    {
+//                        if (i > 0)
+//                        {
+//                            this.Layers[i].getNeurons()[j].weights[w] -= learningrate * this.Layers[i-1].getNeurons()[w].lastValue * currentDelta[w];
+//                        }
+//                        else
+//                        {
+//                            this.Layers[i].getNeurons()[j].weights[w] -= learningrate * inputs[w] * currentDelta[w];
+//                        }
+//                    }
                     
                 }
-                prevDelta = currentDelta.ToList();
+                prevDelta = new List<double>(currentDelta);
             }
         }
         public void UpdateWeights(double learningRate, double[] error)

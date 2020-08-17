@@ -19,12 +19,19 @@ namespace OOPNeuralNetworkSharp
     public class Layer
     {
         Neuron[] neurons;
-        public Layer(int numberOfInputs, int numberOfNeurons, ActivationFunction f, ActivationFunctionDerivative g)
+        public Layer(int numberOfInputs, int numberOfNeurons, ActivationFunction f, ActivationFunctionDerivative g, bool isInput)
         {
             this.neurons = new Neuron[numberOfNeurons];
             for (int i = 0; i < numberOfNeurons; i++)
             {
-                this.neurons[i] = new Neuron(numberOfInputs, f, g);
+                if (isInput)
+                {
+                    this.neurons[i] = new Neuron(numberOfInputs, f, g, true);
+                }
+                else
+                {
+                    this.neurons[i] = new Neuron(numberOfInputs, f, g, false);
+                }
             }
         }
         public double[] Inference(double[] input)

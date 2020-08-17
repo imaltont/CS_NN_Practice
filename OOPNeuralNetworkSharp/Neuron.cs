@@ -10,13 +10,20 @@ namespace OOPNeuralNetworkSharp
         public ActivationFunction activationFunction;
         public ActivationFunctionDerivative activationFunctionDerivative;
         public double lastValue;
-        public Neuron(int weights, ActivationFunction activationFunction, ActivationFunctionDerivative activationFunctionDerivative)
+        public Neuron(int weights, ActivationFunction activationFunction, ActivationFunctionDerivative activationFunctionDerivative, bool isInput)
         {
             Random rnd = new Random();
             this.weights = new double[weights];
             for (int i = 0; i < weights; i++)
             {
-                this.weights[i] = rnd.NextDouble();
+                if (isInput)
+                {
+                    this.weights[i] = 1.0;
+                }
+                else
+                {
+                    this.weights[i] = rnd.NextDouble();
+                }
             }
             this.activationFunction = activationFunction;
             this.activationFunctionDerivative = activationFunctionDerivative;
