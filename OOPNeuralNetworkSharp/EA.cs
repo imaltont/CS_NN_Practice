@@ -49,7 +49,7 @@ namespace OOPNeuralNetworkSharp
             int layer = this.RNG.Next(network.Layers.Length);
             int node = this.RNG.Next(network.Layers[layer].getNeurons().Length);
             int weight = this.RNG.Next(network.Layers[layer].getNeurons()[node].weights.Length);
-            network.Layers[layer].getNeurons()[node].weights[weight] = this.RNG.NextDouble() * 2 - 1;
+            network.Layers[layer].getNeurons()[node].weights[weight] += this.RNG.NextDouble() * 2 - 1;
 
         }
         private Network Crossover(Network parent1, Network parent2, double crossoverRate)
