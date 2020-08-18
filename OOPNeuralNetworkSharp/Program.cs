@@ -78,9 +78,9 @@ namespace OOPNeuralNetworkSharp
                 layers[0] = new LayerParams(sigmoidFunc, sigmoidFuncDerivative, 10);
                 layers[1] = new LayerParams(sigmoidFunc, sigmoidFuncDerivative, 10);
                 layers[2] = new LayerParams(sigmoidFunc, sigmoidFuncDerivative, 1);
-                EA ea = new EA(100, 2, layers);
-                ea.EvolutionaryLoop(trainingSet, 10000, 50, 0.5, 0.9, 100, 0.3);
-                var winner = ea.Population.OrderBy(x => x.Fitness).ElementAt(0);
+                EA ea = new EA(10, 2, layers);
+                ea.EvolutionaryLoop(trainingSet, 10000, 5, 0.5, 0.7, 100, 0.3);
+                var winner = ea.Population.OrderBy(x => x.Fitness).ThenBy(x => x.FromGeneration).ElementAt(0);
                 Console.WriteLine($"The best individual was created in generation: {winner.FromGeneration} and went through {winner.NumMutations} mutations");
 
                 Console.WriteLine("1 and 1");

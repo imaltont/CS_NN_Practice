@@ -106,7 +106,7 @@ namespace OOPNeuralNetworkSharp
                 }
                 if (i != generations - 1)
                 {
-                    var survivors = this.Population.OrderBy(x => x.Fitness);
+                    var survivors = this.Population.OrderBy(x => x.Fitness).ThenBy(x => x.FromGeneration);
                     for (int c = 0; c < numChildren; c++)
                     {
                         newPopulation[c] = new IndividualStruct(this.Crossover(this.TournamentSelection(this.Population, kTournament, chanceWin), this.TournamentSelection(this.Population, kTournament, chanceWin), crossoverRate), i + 1);
@@ -134,7 +134,7 @@ namespace OOPNeuralNetworkSharp
         }
         public double Fitness(DataStruct[] dataset, IndividualStruct individual)
         {
-            //TODO avoid duplicate code from training
+            //TODO avoid duplicate code from the supervised learning implementation in network (Train())
             double accumulatedError = 0;
             foreach (var example in dataset)
             {
@@ -149,7 +149,6 @@ namespace OOPNeuralNetworkSharp
                 accumulatedError += MSE.Sum() / MSE.Length;
             }
             return accumulatedError;
-
         }
     }
 }
