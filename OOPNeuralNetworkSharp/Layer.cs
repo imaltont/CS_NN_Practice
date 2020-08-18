@@ -2,7 +2,7 @@ using System;
 
 namespace OOPNeuralNetworkSharp
 {
-    struct LayerParams
+    public struct LayerParams
     {
         public ActivationFunction F { get; set; }
         public ActivationFunctionDerivative G { get; set; }
@@ -25,6 +25,14 @@ namespace OOPNeuralNetworkSharp
             for (int i = 0; i < numberOfNeurons; i++)
             {
                 this.neurons[i] = new Neuron(numberOfInputs, f, g);
+            }
+        }
+        public Layer(Layer oldLayer)
+        {
+            this.neurons = new Neuron[oldLayer.getNeurons().Length];
+            for (int i = 0; i < oldLayer.getNeurons().Length; i++)
+            {
+                this.neurons[i] = new Neuron(oldLayer.neurons[i]);
             }
         }
         public double[] Inference(double[] input)

@@ -23,6 +23,14 @@ namespace OOPNeuralNetworkSharp
             this.lastValue = 0;
         }
 
+        public Neuron(Neuron oldNeuron)
+        {
+            this.activationFunction = oldNeuron.activationFunction;
+            this.activationFunctionDerivative = oldNeuron.activationFunctionDerivative;
+            this.weights = new double[oldNeuron.weights.Length];
+            oldNeuron.weights.CopyTo(this.weights, 0);
+        }
+
         public double Inference(double[] input)
         {
             double result = 0;
