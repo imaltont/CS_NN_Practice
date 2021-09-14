@@ -1,6 +1,7 @@
-﻿//TODO: Fix weight update so it learns more than output 50/50 every time
+﻿//TODO: Fix asdasdasd aweight update so it learns more than output 50/50 every time
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace OOPNeuralNetworkSharp
 {
