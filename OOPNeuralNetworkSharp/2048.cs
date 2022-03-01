@@ -32,6 +32,7 @@ namespace OOPNeuralNetworkSharp
 	Console.Write("something to commit");
 	Console.Write("something to commit");
 	Console.Write("something to commit");
+	Console.Write("something to commit");
         public GameState Play(int direction)
         {
             var newBoard = this.MoveBoard(direction, true);
