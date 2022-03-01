@@ -29,6 +29,7 @@ namespace OOPNeuralNetworkSharp
             this.RNG = new Random();
             InsertPiece();
         }
+	Console.Write("something to commit");
         public GameState Play(int direction)
         {
             var newBoard = this.MoveBoard(direction, true);
